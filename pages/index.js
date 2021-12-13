@@ -25,10 +25,6 @@ const Home = () => {
     "Q9DVHMT69L",
     "c6a617f6ab361130b780da2833c53ee5"
   );
-  // const searchClient = algoliasearch(
-  //   "latency",
-  //   "56f24e4276091e774e8157fe4b8b11f6"
-  // );
   const [page, setPage] = useState({
     campus_current: 1,
     filter: false,
@@ -91,6 +87,7 @@ const Home = () => {
                 cover={<img alt={hit.event_name} src={hit.image_url} />}
               >
                 <h1>{hit.speakers[0]}</h1>
+                {console.log("hit", hits)}{" "}
                 {hit.description.length > 20 ? (
                   <div>
                     {`${hit.description.substring(0, 60)}...`}
@@ -99,7 +96,6 @@ const Home = () => {
                 ) : (
                   <Meta title={hit.speakers[0]} description={hit.description} />
                 )}
-
                 <h4>popularity scorre : {hit.popularity_score}</h4>
                 <h4>tags : {hit.tags.toString().split(",").join(", ")} </h4>
               </Card>
@@ -115,7 +111,7 @@ const Home = () => {
       <Header>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-          {new Array(2).fill(null).map((_, index) => {
+          {new Array(1).fill(null).map((_, index) => {
             const key = index + 1;
             return <Menu.Item key={key}>{`Challenge ${key}`}</Menu.Item>;
           })}
@@ -130,14 +126,13 @@ const Home = () => {
           <div>
             <h1>Search Using Algolia</h1>
             <InstantSearch searchClient={searchClient} indexName="dev_lazycode">
-              {/* <InstantSearch searchClient={searchClient} indexName="movies"> */}
               <Search
-                placeholder="input search text"
+                placeholder="search here..."
                 onChange={(e) => {
                   setSearch(e.target.value);
                   setPage({ ...page, campus_current: 1 });
                 }}
-                style={{ width: 200 }}
+                style={{ width: 1000 }}
               />
               <Configure distinct hitsPerPage={20} />
 
