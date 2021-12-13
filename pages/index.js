@@ -87,7 +87,6 @@ const Home = () => {
                 cover={<img alt={hit.event_name} src={hit.image_url} />}
               >
                 <h1>{hit.speakers[0]}</h1>
-                {console.log("hit", hits)}{" "}
                 {hit.description.length > 20 ? (
                   <div>
                     {`${hit.description.substring(0, 60)}...`}
